@@ -79,14 +79,18 @@ type GithubRepos = {
 }[];
 
 export default async function Home() {
-  const response = await fetch("https://api.github.com/users/t3dotgg/repos");
+  const response = await fetch(
+    "https://api.github.com/users/ThomasNovaro/repos"
+  );
   const repos: GithubRepos = await response.json();
-  console.log(repos);
 
   return (
     <main>
       {repos?.map((repo, key) => (
-        <p key={key}>{repo.name}</p>
+        <div key={key}>
+          <p>{repo.name}</p>
+          <p className='italic'>{repo.description}</p>
+        </div>
       ))}
     </main>
   );
